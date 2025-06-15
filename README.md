@@ -19,6 +19,7 @@
 - pandas
 - numpy
 - python-docx
+- openpyxl
 
 如果系统中未安装这些库，程序会自动尝试通过pip安装。
 
