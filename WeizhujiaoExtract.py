@@ -38,7 +38,8 @@ class WeizhujiaoExtract:
         value = self.df.loc[self.df['Unnamed: 1'] == self.name, 'Unnamed: 6'].values # 直接找就好，微助教导出格式很唐
         if np.array_equal(value, np.array([], dtype=object)): # 如果没有找到答案，就返回空
             print("\n")
-            return
+            self.answer_list.append("-1")
+            return "-1"
         elif isinstance(value, int):
             return
         else:
@@ -71,8 +72,13 @@ class WeizhujiaoExtract:
         run._element.rPr.rFonts.set(qn('w:eastAsia'), '宋体')
         run.font.size = Pt(14)
         i = 0
+        cnt = 0
         for answer in self.answer_list:
-            head = doc.add_paragraph(f"问题{i+1}：{self.question_list[i]}")
+            if (answer == "-1"):
+                i+=1
+                cnt+=1
+                continue
+            head = doc.add_paragraph(f"问题{i+1-cnt}：{self.question_list[i]}")
             run = head.add_run()
             run.bold = True
             run.font.name = '宋体'
