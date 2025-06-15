@@ -1,12 +1,13 @@
 import os 
 try:
+    import openpyxl
     import pandas as pd
     import numpy as np
     from docx import Document
     from docx.shared import Pt
     from docx.oxml.ns import qn
 except ImportError:
-    os.system("pip install pandas numpy python-docx")
+    os.system("pip install pandas numpy openpyxl python-docx")
     import pandas as pd
     import numpy as np
     from docx import Document
@@ -88,7 +89,7 @@ class WeizhujiaoExtract:
         print(f"Answers saved to {file_name}")
 
 if __name__ == '__main__':# 使用示例
-    file_path = "马原05班课堂讨论(2025-05-29).xlsx"
+    file_path = "马原07班课堂讨论(2025-05-29).xlsx"
     name = input("请输入姓名：")
     z = WeizhujiaoExtract(file_path, name)
     z.switch_sheet(z.combine_qaa)
